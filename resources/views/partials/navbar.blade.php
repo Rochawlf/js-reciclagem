@@ -32,7 +32,7 @@
 
             <a href="{{ route('home') }}#localizacao"
                 class="nav-link inline-block text-white font-bold hover:text-brand dark:hover:text-brand-light transition pb-1">
-                Contato / Localização
+                Localização
             </a>
 
             <a href="#" onclick="abrirModal(event)"

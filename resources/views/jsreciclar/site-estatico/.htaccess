@@ -1,0 +1,25 @@
+DirectoryIndex index.php
+
+RewriteEngine On
+
+# Remove .php da URL quando acessarem diretamente
+# Exemplo: /servicos.php vira /servicos
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Página inicial
+RewriteRule ^$ index.php [L]
+
+# Rotas amigáveis
+RewriteRule ^servicos/?$ servicos.php [L]
+RewriteRule ^acondicionamento/?$ acondicionamento.php [L]
+RewriteRule ^transportes/?$ transportes.php [L]
+
+# Se o arquivo ou pasta existir, carrega normalmente
+# Isso mantém img/, assets/, partials/ funcionando
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Fallback para a home
+ErrorDocument 404 /index.php
