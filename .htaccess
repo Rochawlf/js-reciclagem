@@ -1,0 +1,19 @@
+DirectoryIndex index.html
+
+RewriteEngine On
+
+# Força HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove barra duplicada ou URLs estranhas
+RewriteCond %{THE_REQUEST} //
+RewriteRule .* /$0 [R=301,L]
+
+# Se o arquivo ou pasta existir, acessa normalmente
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redireciona tudo para index.html
+RewriteRule ^ index.html [L]
